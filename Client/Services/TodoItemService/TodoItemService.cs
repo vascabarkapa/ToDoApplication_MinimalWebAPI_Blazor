@@ -30,7 +30,7 @@ namespace Client.Services.TodoItemService
                 _navigationManager.NavigateTo("todoItems");
             }
 
-            throw new Exception("Unexpected error on adding new Task");
+            //throw new Exception("Unexpected error on adding new Task");
         }
 
         public async Task UpdateTodoItem(TodoItem todoItem)
@@ -44,7 +44,7 @@ namespace Client.Services.TodoItemService
                 _navigationManager.NavigateTo("todoItems");
             }
 
-            throw new Exception("Unexpected error on adding new Task");
+            //throw new Exception("Unexpected error on adding new Task");
         }
 
         public async Task DeleteTodoItem(int id)
@@ -58,7 +58,7 @@ namespace Client.Services.TodoItemService
                 _navigationManager.NavigateTo("todoItems");
             }
 
-            throw new Exception("Unexpected error on adding new Task");
+            //throw new Exception("Unexpected error on adding new Task");
         }
 
         public async Task<TodoItem> GetSingleTodoItem(int id)
@@ -69,8 +69,8 @@ namespace Client.Services.TodoItemService
             {
                 return response;
             }
-
-            throw new Exception("To Do not found!");
+            else
+                throw new Exception("To Do not found!");
         }
 
         public async Task GetTodoItems()
