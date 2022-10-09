@@ -1,5 +1,6 @@
 ﻿@page "/todo"
 @page "/todo/{id:int}"
+@inject ITodoItemService TodoItemService
 
 @if (Id == null)
 {
@@ -54,7 +55,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         btnText = Id == null ? "Add" : "Update";
-        //await TodoItemService.GetTodoItems();
+        await TodoItemService.GetTodoItems();
     }
 
     protected override async Task OnParametersSetAsync()
@@ -65,24 +66,24 @@ else
         }
         else
         {
-            //todo = await TodoItemService.GetSingleTodoItem((int)Id);
+            todo = await TodoItemService.GetSingleTodoItem((int)Id);
         }
     }
 
     async Task HandleSubmit()
     {
-        if(Id == null)
+        if (Id == null)
         {
-            //await TodoItemService.CreateTodoItem(todo);
+            await TodoItemService.CreateTodoItem(todo);
         }
         else
         {
-            //await TodoItemService.UpdateTodoItem(todo);
+            await TodoItemService.UpdateTodoItem(todo);
         }
     }
 
     async Task DeleteTodoItem()
     {
-        //await TodoItemService.DeleteTodoItem(todo.Id);
+        await TodoItemService.DeleteTodoItem(todo.Id);
     }
 }
