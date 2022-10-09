@@ -1,4 +1,5 @@
 ﻿@page "/todoItems"
+@inject ITodoItemService TodoItemService
 @inject NavigationManager NavigationManager
 
 <PageTitle>To Do Items</PageTitle>
@@ -27,9 +28,7 @@
         </tr>
     </thead>
     <tbody>
-        @if (_todoItems != null)
-        {
-                    @foreach (var todoItem in _todoItems)
+        @foreach (var todoItem in TodoItemService.TodoItems)
         {
             <tr>
                 <td>
@@ -59,26 +58,19 @@
                 </td>
             </tr>
         }
-        }
     </tbody>
 </table>
 <button class="btn btn-primary" @onclick="CreateNewTask">Add new Task</button>
 
 @code {
-    [Inject]
-    protected HttpClient HttpClient { get; set; }
-
-    private List<TodoItem>? _todoItems = null;
-
     protected override async Task OnInitializedAsync()
     {
-        // https://localhost:7019/
-        _todoItems = await HttpClient.GetFromJsonAsync<List<TodoItem>>("https://localhost:7019/api/todoItem");
+        await TodoItemService.GetTodoItems();
     }
 
     void ShowTodo(int id)
     {
-        //NavigationManager.NavigateTo($"todo/{id}");
+        NavigationManager.NavigateTo($"todo/{id}");
     }
 
     void CreateNewTask()
