@@ -6,6 +6,7 @@ namespace Client.Services.TodoItemService
     public class TodoItemService : ITodoItemService
     {
         // https://localhost:7019/
+        string url = "https://localhost:7019";
 
         private readonly HttpClient _http;
         private readonly NavigationManager _navigationManager;
@@ -20,7 +21,7 @@ namespace Client.Services.TodoItemService
 
         public async Task CreateTodoItem(TodoItem todoItem)
         {
-            var result = await _http.PostAsJsonAsync("api/todoItem", todoItem);
+            var result = await _http.PostAsJsonAsync($"{url}/api/todoItem", todoItem);
             var response = await result.Content.ReadFromJsonAsync<List<TodoItem>>();
 
             if (response != null)
@@ -34,7 +35,7 @@ namespace Client.Services.TodoItemService
 
         public async Task UpdateTodoItem(TodoItem todoItem)
         {
-            var result = await _http.PutAsJsonAsync($"api/todoItem/{todoItem.Id}", todoItem);
+            var result = await _http.PutAsJsonAsync($"{url}/api/todoItem/{todoItem.Id}", todoItem);
             var response = await result.Content.ReadFromJsonAsync<List<TodoItem>>();
 
             if (response != null)
@@ -48,7 +49,7 @@ namespace Client.Services.TodoItemService
 
         public async Task DeleteTodoItem(int id)
         {
-            var result = await _http.DeleteAsync($"api/todoItem/{id}");
+            var result = await _http.DeleteAsync($"{url}/api/todoItem/{id}");
             var response = await result.Content.ReadFromJsonAsync<List<TodoItem>>();
 
             if (response != null)
@@ -62,7 +63,7 @@ namespace Client.Services.TodoItemService
 
         public async Task<TodoItem> GetSingleTodoItem(int id)
         {
-            var response = await _http.GetFromJsonAsync<TodoItem>($"api/todoItem/{id}");
+            var response = await _http.GetFromJsonAsync<TodoItem>($"{url}/api/todoItem/{id}");
 
             if (response != null)
             {
@@ -74,7 +75,7 @@ namespace Client.Services.TodoItemService
 
         public async Task GetTodoItems()
         {
-            var response = await _http.GetFromJsonAsync<List<TodoItem>>("https://localhost:7019/api/todoItem");
+            var response = await _http.GetFromJsonAsync<List<TodoItem>>($"{url}/api/todoItem");
 
             if (response != null)
             {
