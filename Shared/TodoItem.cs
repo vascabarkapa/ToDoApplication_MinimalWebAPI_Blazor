@@ -20,7 +20,7 @@ namespace Shared
 
         [Required]
         [Display(Name = "Date and Time")]
-        public DateTime DateAndTime { get; set; }
+        public DateTime? DateAndTime { get; set; }
 
         [Required]
         public string Priority { get; set; }
