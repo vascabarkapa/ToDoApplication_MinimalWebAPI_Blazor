@@ -15,19 +15,23 @@ else
     <hr />
 }
 
-<EditForm Model="todo" OnSubmit="HandleSubmit">
+<EditForm Model="todo" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator />
     <div class="mt-4">
         <div class="mb-3">
             <label for="name">Name</label>
             <InputText id="name" @bind-Value="todo.Name" class="form-control"></InputText>
+            <ValidationMessage For="@(() => todo.Name)" />
         </div>
         <div class="mb-3">
             <label for="description">Description</label>
             <InputText id="description" @bind-Value="todo.Description" class="form-control"></InputText>
+            <ValidationMessage For="@(() => todo.Description)" />
         </div>
         <div class="mb-3">
             <label for="date_time">Date and Time</label>
             <InputDate id="date_time" @bind-Value="todo.DateAndTime" class="form-control"></InputDate>
+            <ValidationMessage For="@(() => todo.DateAndTime)" />
         </div>
         <div class="mb-3">
             <label for="priority">Priority</label>
@@ -37,6 +41,7 @@ else
                 <option value="Medium">Medium</option>
                 <option value="Low">Low</option>
             </InputSelect>
+            <ValidationMessage For="@(() => todo.Priority)" />
         </div>
         <div class="mb-3">
             <InputCheckbox id="is_done" @bind-Value="todo.isDone" class="form-check-input"></InputCheckbox>
