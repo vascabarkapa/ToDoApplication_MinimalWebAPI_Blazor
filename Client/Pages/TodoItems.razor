@@ -56,11 +56,11 @@
                     @todoItem.isDone
                 </td>
                 <td width="20%">
-                    <div class="w-75 btn-group" role="group">
-                        <button class="btn btn-primary rounded mx-2 text-center" @onclick="(() => ShowTodo(todoItem.Id))">
+                    <div class="float-end btn-group" role="group">
+                        <button class="btn btn-primary rounded mx-2 text-center" style="width:80px" @onclick="(() => ShowTodo(todoItem.Id))">
                             <i class="oi oi-pencil"></i> &nbsp; Edit
                         </button>
-                        <button class="btn btn-danger rounded mx-2 text-center">
+                        <button class="btn btn-danger rounded mx-2 text-center" style="width:80px">
                             <i class="oi oi-trash"></i> &nbsp; Delete
                         </button>
                     </div>
