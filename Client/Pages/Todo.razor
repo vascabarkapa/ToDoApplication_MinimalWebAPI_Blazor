@@ -6,42 +6,46 @@
 {
     <PageTitle>Add the new Task</PageTitle>
     <h3>Add the new Task</h3>
+    <hr />
 }
 else
 {
     <PageTitle>Edit @todo.Name</PageTitle>
     <h3>Edit @todo.Name</h3>
+    <hr />
 }
 
 <EditForm Model="todo" OnSubmit="HandleSubmit">
-    <div>
-        <label for="name">Name</label>
-        <InputText id="name" @bind-Value="todo.Name" class="form-control"></InputText>
+    <div class="mt-4">
+        <div class="mb-3">
+            <label for="name">Name</label>
+            <InputText id="name" @bind-Value="todo.Name" class="form-control"></InputText>
+        </div>
+        <div class="mb-3">
+            <label for="description">Description</label>
+            <InputText id="description" @bind-Value="todo.Description" class="form-control"></InputText>
+        </div>
+        <div class="mb-3">
+            <label for="date_time">Date and Time</label>
+            <InputDate id="date_time" @bind-Value="todo.DateAndTime" class="form-control"></InputDate>
+        </div>
+        <div class="mb-3">
+            <label for="priority">Priority</label>
+            <InputSelect id="priority" @bind-Value="todo.Priority" class="form-select">
+                <option value="" selected>Select a priority</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </InputSelect>
+        </div>
+        <div class="mb-3">
+            <InputCheckbox id="is_done" @bind-Value="todo.isDone" class="form-check-input"></InputCheckbox>
+            <label for="is_done">Done</label>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary" style="width:150px">@btnText</button>
+        <button type="button" class="btn btn-danger" @onclick="DeleteTodoItem" style="width:150px">Delete</button>
     </div>
-    <div>
-        <label for="description">Description</label>
-        <InputText id="description" @bind-Value="todo.Description" class="form-control"></InputText>
-    </div>
-    <div>
-        <label for="date_time">Date and Time</label>
-        <InputDate id="date_time" @bind-Value="todo.DateAndTime" class="form-control"></InputDate>
-    </div>
-    <div>
-        <label for="priority">Priority</label>
-        <InputSelect id="priority" @bind-Value="todo.Priority" class="form-select">
-            <option value="" selected>Select a priority</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-        </InputSelect>
-    </div>
-    <div>
-        <label for="is_done">Done</label>
-        <InputCheckbox id="is_done" @bind-Value="todo.isDone" class="form-control"></InputCheckbox>
-    </div>
-    <br />
-    <button type="submit" class="btn btn-primary">@btnText</button>
-    <button type="button" class="btn btn-danger" @onclick="DeleteTodoItem">Delete</button>
 </EditForm>
 
 @code {
