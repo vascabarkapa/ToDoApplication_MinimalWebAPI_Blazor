@@ -70,11 +70,7 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
-        if (Id == null)
-        {
-
-        }
-        else
+        if (Id != null)
         {
             todo = await TodoItemService.GetSingleTodoItem((int)Id);
         }
