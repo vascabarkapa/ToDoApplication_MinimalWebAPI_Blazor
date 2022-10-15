@@ -2,7 +2,7 @@
 @inject ITodoItemService TodoItemService
 @inject NavigationManager NavigationManager
 
-<PageTitle>TTo Do List - To Do App</PageTitle>
+<PageTitle>To Do List - To Do App</PageTitle>
 
 <div class="px-3 py-1">
     <div class="row pt-4">
@@ -15,60 +15,72 @@
     </div>
 </div>
 <br />
-<table class="table table-striped" width="100%">
-    <thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Description
-            </th>
-            <th>
-                Date
-            </th>
-            <th>
-                Priority
-            </th>
-            <th>
-                Done
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var todoItem in TodoItemService.TodoItems)
-        {
+@if (TodoItemService.TodoItems.Count != 0)
+{
+    <table class="table table-striped" width="100%">
+        <thead>
             <tr>
-                <td width="20%">
-                    @todoItem.Name
-                </td>
-                <td width="20%">
-                    @todoItem.Description
-                </td>
-                <td width="20%">
-                    @todoItem.DateAndTime
-                </td>
-                <td width="20%">
-                    @todoItem.Priority
-                </td>
-                <td width="20%">
-                    @todoItem.isDone
-                </td>
-                <td width="20%">
-                    <div class="float-end btn-group" role="group">
-                        <button class="btn btn-primary rounded mx-2 text-center" style="width:80px" @onclick="(() => ShowTodo(todoItem.Id))">
-                            <i class="oi oi-pencil"></i> &nbsp; Edit
-                        </button>
-                        <button class="btn btn-danger rounded mx-2 text-center" style="width:80px">
-                            <i class="oi oi-trash"></i> &nbsp; Delete
-                        </button>
-                    </div>
-                </td>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Priority
+                </th>
+                <th>
+                    Done
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var todoItem in TodoItemService.TodoItems)
+            {
+                <tr>
+                    <td width="20%">
+                        @todoItem.Name
+                    </td>
+                    <td width="20%">
+                        @todoItem.Description
+                    </td>
+                    <td width="20%">
+                        @todoItem.DateAndTime
+                    </td>
+                    <td width="20%">
+                        @todoItem.Priority
+                    </td>
+                    <td width="20%">
+                        @todoItem.isDone
+                    </td>
+                    <td width="20%">
+                        <div class="float-end btn-group" role="group">
+                            <button class="btn btn-primary rounded mx-2 text-center" style="width:80px" @onclick="(() => ShowTodo(todoItem.Id))">
+                                <i class="oi oi-pencil"></i> &nbsp; Edit
+                            </button>
+                            <button class="btn btn-danger rounded mx-2 text-center" style="width:80px">
+                                <i class="oi oi-trash"></i> &nbsp; Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div style="position:fixed; top:30vh; left:20vw; text-align:center">
+        <div style="display:flex; gap:10px; justify-content:center; align-items:center">
+            <div class="spinner-border" role="status"></div>
+            Loading...
+        </div>
+    </div>
+}
 
 @code {
     protected override async Task OnInitializedAsync()
