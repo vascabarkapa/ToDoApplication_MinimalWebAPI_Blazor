@@ -1,41 +1,31 @@
-﻿@page "/todo"
-@page "/todo/{id:int}"
+﻿@page "/todoDelete/{id:int}"
 @inject ITodoItemService TodoItemService
 
-@if (Id == null)
-{
-    <PageTitle>Add the new Task - To Do App</PageTitle>
-    <h3>Add the new Task</h3>
-    <hr />
-}
-else
-{
-    <PageTitle>Edit Task - To Do App</PageTitle>
-    <h3>Edit Task</h3>
-    <hr />
-}
+<PageTitle>Delete Task - To Do App</PageTitle>
+<h3>Are you sure you want to delete the task?</h3>
+<hr />
 
 <EditForm Model="todo" OnValidSubmit="HandleSubmit">
     <DataAnnotationsValidator />
     <div class="mt-4">
         <div class="mb-3">
             <label for="name">Name</label>
-            <InputText id="name" @bind-Value="todo.Name" class="form-control"></InputText>
+            <InputText disabled id="name" @bind-Value="todo.Name" class="form-control"></InputText>
             <ValidationMessage For="@(() => todo.Name)" />
         </div>
         <div class="mb-3">
             <label for="description">Description</label>
-            <InputText id="description" @bind-Value="todo.Description" class="form-control"></InputText>
+            <InputText disabled id="description" @bind-Value="todo.Description" class="form-control"></InputText>
             <ValidationMessage For="@(() => todo.Description)" />
         </div>
         <div class="mb-3">
             <label for="date_time">Date and Time</label>
-            <InputDate id="date_time" @bind-Value="todo.DateAndTime" class="form-control"></InputDate>
+            <InputDate disabled id="date_time" @bind-Value="todo.DateAndTime" class="form-control"></InputDate>
             <ValidationMessage For="@(() => todo.DateAndTime)" />
         </div>
         <div class="mb-3">
             <label for="priority">Priority</label>
-            <InputSelect id="priority" @bind-Value="todo.Priority" class="form-select">
+            <InputSelect disabled  id="priority" @bind-Value="todo.Priority" class="form-select">
                 <option value="" selected>Select a priority</option>
                 <option value="High">High</option>
                 <option value="Medium">Medium</option>
@@ -44,12 +34,11 @@ else
             <ValidationMessage For="@(() => todo.Priority)" />
         </div>
         <div class="mb-3">
-            <InputCheckbox id="is_done" @bind-Value="todo.isDone" class="form-check-input"></InputCheckbox>
+            <InputCheckbox disabled id="is_done" @bind-Value="todo.isDone" class="form-check-input"></InputCheckbox>
             <label for="is_done">Done</label>
         </div>
         <br />
-        <button type="submit" class="btn btn-primary" style="width:150px">@btnText</button>
-        <!--<button type="button" class="btn btn-danger" @onclick="DeleteTodoItem" style="width:150px">Delete</button>-->
+        <button type="submit" class="btn btn-primary" style="width:150px">Delete</button>
         <button type="button" class="btn btn-danger" style="width:150px" onclick="@(() => TodoItemService.BackToList())">Back to List</button>
     </div>
 </EditForm>
@@ -64,7 +53,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        btnText = Id == null ? "Add" : "Update";
         await TodoItemService.GetTodoItems();
     }
 
@@ -81,18 +69,6 @@ else
     }
 
     async Task HandleSubmit()
-    {
-        if (Id == null)
-        {
-            await TodoItemService.CreateTodoItem(todo);
-        }
-        else
-        {
-            await TodoItemService.UpdateTodoItem(todo);
-        }
-    }
-
-    async Task DeleteTodoItem()
     {
         await TodoItemService.DeleteTodoItem(todo.Id);
     }

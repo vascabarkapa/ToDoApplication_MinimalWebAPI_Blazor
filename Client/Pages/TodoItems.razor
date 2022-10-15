@@ -62,7 +62,7 @@
                             <button class="btn btn-primary rounded mx-2 text-center" style="width:80px" @onclick="(() => ShowTodo(todoItem.Id))">
                                 <i class="oi oi-pencil"></i> &nbsp; Edit
                             </button>
-                            <button class="btn btn-danger rounded mx-2 text-center" style="width:80px">
+                            <button class="btn btn-danger rounded mx-2 text-center" style="width:80px" @onclick="(() => ShowTodoDelete(todoItem.Id))">
                                 <i class="oi oi-trash"></i> &nbsp; Delete
                             </button>
                         </div>
@@ -96,5 +96,10 @@ else
     void CreateNewTask()
     {
         NavigationManager.NavigateTo("/todo");
+    }
+
+    void ShowTodoDelete(int id)
+    {
+        NavigationManager.NavigateTo($"todoDelete/{id}");
     }
 }

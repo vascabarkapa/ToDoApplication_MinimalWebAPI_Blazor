@@ -13,5 +13,7 @@
         Task UpdateTodoItem(TodoItem todoItem);
 
         Task DeleteTodoItem(int id);
+
+        public void BackToList();
     }
 }

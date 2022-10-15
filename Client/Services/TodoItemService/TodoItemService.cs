@@ -82,5 +82,10 @@ namespace Client.Services.TodoItemService
                 TodoItems = response;
             }
         }
+
+        public void BackToList()
+        {
+            _navigationManager.NavigateTo("todoItems");
+        }
     }
 }
