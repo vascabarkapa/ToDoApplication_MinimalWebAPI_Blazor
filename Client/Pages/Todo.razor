@@ -49,7 +49,6 @@ else
         </div>
         <br />
         <button type="submit" class="btn btn-primary" style="width:150px">@btnText</button>
-        <!--<button type="button" class="btn btn-danger" @onclick="DeleteTodoItem" style="width:150px">Delete</button>-->
         <button type="button" class="btn btn-danger" style="width:150px" onclick="@(() => TodoItemService.BackToList())">Back to List</button>
     </div>
 </EditForm>
