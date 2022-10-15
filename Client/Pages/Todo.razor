@@ -1,11 +1,11 @@
-﻿@page "/todo"
-@page "/todo/{id:int}"
+﻿@page "/todoItems/todo"
+@page "/todoItems/todo/{id:int}"
 @inject ITodoItemService TodoItemService
 
 @if (Id == null)
 {
-    <PageTitle>Add the new Task - To Do App</PageTitle>
-    <h3>Add the new Task</h3>
+    <PageTitle>Add new Task - To Do App</PageTitle>
+    <h3>Add new Task</h3>
     <hr />
 }
 else

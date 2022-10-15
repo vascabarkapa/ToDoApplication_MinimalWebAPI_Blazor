@@ -91,16 +91,16 @@ else
 
     void ShowTodo(int id)
     {
-        NavigationManager.NavigateTo($"todo/{id}");
+        NavigationManager.NavigateTo($"todoItems/todo/{id}");
     }
 
     void CreateNewTask()
     {
-        NavigationManager.NavigateTo("/todo");
+        NavigationManager.NavigateTo("todoItems/todo");
     }
 
     void ShowTodoDelete(int id)
     {
-        NavigationManager.NavigateTo($"todoDelete/{id}");
+        NavigationManager.NavigateTo($"todoItems/todoDelete/{id}");
     }
 }
